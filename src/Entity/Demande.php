@@ -31,7 +31,6 @@ class Demande
     #[ORM\JoinColumn(nullable: false)]
     private ?Utilisateur $utilisature = null;
     
-    #[Ignore]
     #[ORM\ManyToOne(inversedBy: 'demandes', fetch: 'EAGER')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Annonce $annonce = null;
