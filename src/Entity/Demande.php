@@ -37,8 +37,7 @@ class Demande
     public function getId(): ?int
     {
         return $this->id;
-    }
-
+    } 
     public function getDateDebut(): ?\DateTimeInterface
     {
         return $this->date_debut;
