@@ -22,14 +22,9 @@
         "method": "GET",
         "sortNum": 0,
         "created": "2023-07-26T09:19:27.274Z",
-        "modified": "2023-07-26T10:32:17.113Z",
+        "modified": "2023-07-27T08:08:46.866Z",
         "headers": [],
         "params": [],
-        "body": {
-            "type": "json",
-            "raw": "{\n  \"id\": 4,\n  \"name\": \"Sara\",\n  \"address\": \"Calmette\",\n  \"email\": \"ss@gmail.com\",\n  \"telephone\": 688\n}",
-            "form": []
-        },
         "tests": []
     },
     {
@@ -65,16 +60,16 @@
         "colId": "history",
         "containerId": "",
         "name": "localhost:8000/api/utilisateur",
-        "url": "localhost:8000/api/utilisateur",
+        "url": "localhost:8000/api/annonce",
         "method": "POST",
         "sortNum": 0,
         "created": "2023-07-26T09:39:27.404Z",
-        "modified": "2023-07-26T09:39:27.404Z",
+        "modified": "2023-07-27T08:11:16.257Z",
         "headers": [],
         "params": [],
         "body": {
             "type": "json",
-            "raw": "{\n  \"id\": 4,\n  \"name\": \"Sara\",\n  \"address\": \"Calmette\",\n  \"email\": \"ss@gmail.com\",\n  \"telephone\": 688\n}",
+            "raw": "{\n    \"title\": \"test44\",\n    \"image\": \"test44\",\n    \"description\": \"test44\",\n    \"dateA\": \"test\",\n    \"categorie\": \"test44\",\n    \"statueA\":\"test44\"\n\n    }",
             "form": []
         },
         "tests": []
@@ -98,11 +93,11 @@
         "colId": "history",
         "containerId": "",
         "name": "localhost:8000/api/demande",
-        "url": "localhost:8000/api/demande",
+        "url": "localhost:8000/api/annonce/search/test1",
         "method": "GET",
         "sortNum": 0,
         "created": "2023-07-26T09:47:27.805Z",
-        "modified": "2023-07-26T10:32:57.101Z",
+        "modified": "2023-07-27T14:21:23.703Z",
         "headers": [],
         "params": [],
         "body": {
@@ -118,15 +113,15 @@
         "containerId": "",
         "name": "localhost:8000/api/annonce",
         "url": "localhost:8000/api/annonce",
-        "method": "GET",
+        "method": "POST",
         "sortNum": 0,
         "created": "2023-07-26T10:32:32.389Z",
-        "modified": "2023-07-26T10:32:32.389Z",
+        "modified": "2023-07-27T09:41:57.321Z",
         "headers": [],
         "params": [],
         "body": {
             "type": "json",
-            "raw": "{\n  \"id\": 4,\n  \"name\": \"Sara\",\n  \"address\": \"Calmette\",\n  \"email\": \"ss@gmail.com\",\n  \"telephone\": 688\n}",
+            "raw": "    {\n      \"image\": \"test5\",\n    \"description\": \"test5\",\n    \"dateA\": \"2023-07-11\",\n    \"categorie\": \"test5\",\n    \"statueA\": \"dispo\",\n    \"title\":\"test5\"\n    }",
             "form": []
         },
         "tests": []

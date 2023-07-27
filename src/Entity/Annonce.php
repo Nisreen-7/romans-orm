@@ -31,8 +31,8 @@ class Annonce
 
     #[ORM\Column(length: 255)]
     private ?string $statueA = null;
-
-    #[ORM\ManyToOne(inversedBy: 'annonces' , fetch:'EAGER')]
+  
+    #[ORM\ManyToOne(inversedBy: 'annonces', fetch: 'EAGER')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Utilisateur $utilisateur = null;
     #[Ignore]
@@ -52,17 +52,7 @@ class Annonce
         return $this->id;
     }
 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): static
-    {
-        $this->image = $image;
-
-        return $this;
-    }
+  
 
     public function getDescription(): ?string
     {
@@ -165,4 +155,22 @@ class Annonce
 
         return $this;
     }
+
+
+
+	/**
+	 * @return 
+	 */
+	public function getImage(): ?string {
+		return $this->image;
+	}
+	
+	/**
+	 * @param  $image 
+	 * @return self
+	 */
+	public function setImage(?string $image): self {
+		$this->image = $image;
+		return $this;
+	}
 }

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Annonce;
 use App\Repository\AnnonceRepository;
+use App\Repository\UtilisateurRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -11,6 +12,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
+use App\Service\Uploader;
+
 #[Route('/api/annonce')]
 
 class AnnonceController extends AbstractController
@@ -30,13 +33,18 @@ class AnnonceController extends AbstractController
     }
 
     #[Route(methods: 'POST')]
-    public function add(Request $request, SerializerInterface $serializer): JsonResponse {
+    public function add(Uploader $uploader,Request $request, SerializerInterface $serializer, UtilisateurRepository $utilisateurRepo): JsonResponse {
         try {
             $annonce = $serializer->deserialize($request->getContent(), Annonce::class, 'json');
         } catch (\Exception $e) {
             return $this->json('Invalid Body', 400);
         }
+        if($annonce->getImage()) {
 
+            $filename = $uploader->upload($annonce->getImage());
+            $annonce->setImage($filename);
+        }
+        $annonce->setUtilisateur($utilisateurRepo->find(1));
         $this->em->persist($annonce);
         $this->em->flush();
         return $this->json($annonce, 201);
@@ -63,5 +71,12 @@ class AnnonceController extends AbstractController
         $this->em->flush();
 
         return $this->json($annonce);
+    }
+
+
+    #[Route('/search/{term}', methods: 'GET')]
+    public function search(string $term): JsonResponse
+    {
+        return $this->json($this->repo->search($term));
     }
 }

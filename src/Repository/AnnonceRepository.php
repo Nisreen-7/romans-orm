@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Annonce;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -21,7 +22,7 @@ class AnnonceRepository extends ServiceEntityRepository
         parent::__construct($registry, Annonce::class);
     }
 
-//    /**
+    //    /**
 //     * @return Annonce[] Returns an array of Annonce objects
 //     */
 //    public function findByExampleField($value): array
@@ -36,7 +37,7 @@ class AnnonceRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Annonce
+    //    public function findOneBySomeField($value): ?Annonce
 //    {
 //        return $this->createQueryBuilder('a')
 //            ->andWhere('a.exampleField = :val')
@@ -45,4 +46,40 @@ class AnnonceRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    /**
+     * @return Annonce[]
+     */
+    public function search(string $term): array
+    {
+        return $this->createQueryBuilder('annonce')
+        ->select('annonce', 'u')
+            ->leftJoin('annonce.utilisateur', 'u')
+            ->andWhere('annonce.title LIKE :searchTerm ')
+            ->setParameter('searchTerm', '%' . $term . '%')
+            ->addOrderBy('annonce.title', Criteria::DESC)
+            ->getQuery()
+            ->getResult();
+    }
+    public function save(Annonce $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity);
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+    public function remove(Annonce $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->remove($entity);
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+    //    /**
+//     * @return Annonce[] Returns an array of Annonce objects
+
+
+
+
+
 }
