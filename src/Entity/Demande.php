@@ -30,6 +30,7 @@ class Demande
     #[ORM\ManyToOne(inversedBy: 'demandes', fetch: 'EAGER')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Utilisateur $utilisature = null;
+
     
     #[ORM\ManyToOne(inversedBy: 'demandes', fetch: 'EAGER')]
     #[ORM\JoinColumn(nullable: false)]
