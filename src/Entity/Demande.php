@@ -34,7 +34,6 @@ class Demande
     #[ORM\ManyToOne(inversedBy: 'demandes', fetch: 'EAGER')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Annonce $annonce = null;
-
     public function getId(): ?int
     {
         return $this->id;
