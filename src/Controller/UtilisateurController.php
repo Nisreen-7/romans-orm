@@ -28,6 +28,20 @@ class UtilisateurController extends AbstractController
         return $this->json($user);
     }
 
+    #[Route('/{id}/annonces', methods: 'GET')]
+
+    public function getAnnUser(Utilisateur $user) {
+        $annances= $user->getAnnonces();
+        return $this->json($annances);
+    }
+
+    #[Route('/{id}/annonces/demandes', methods: 'GET')]
+
+    public function addDemAnn(Utilisateur $user) {
+        $demendes= $user->getDemandes();
+        return $this->json($demendes);
+    }
+
     #[Route(methods: 'POST')]
     public function add(Request $request, SerializerInterface $serializer): JsonResponse {
         try {

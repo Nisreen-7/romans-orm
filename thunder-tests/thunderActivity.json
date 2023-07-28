@@ -125,5 +125,19 @@
             "form": []
         },
         "tests": []
+    },
+    {
+        "_id": "12122ca4-6e75-49bd-82c5-16ba3937ab8e",
+        "colId": "history",
+        "containerId": "",
+        "name": "localhost:8000/api/utilisateur/1/annonces",
+        "url": "localhost:8000/api/utilisateur/1/annonces",
+        "method": "GET",
+        "sortNum": 0,
+        "created": "2023-07-28T07:26:25.896Z",
+        "modified": "2023-07-28T07:26:25.896Z",
+        "headers": [],
+        "params": [],
+        "tests": []
     }
 ]

@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Demande;
+use App\Repository\AnnonceRepository;
 use App\Repository\DemandeRepository;
+use App\Repository\UtilisateurRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -31,18 +33,46 @@ class DemandeController extends AbstractController
     }
 
     #[Route(methods: 'POST')]
-    public function add(Request $request, SerializerInterface $serializer): JsonResponse {
+    public function add(Request $request, SerializerInterface $serializer,UtilisateurRepository $utilisateurRepo ,AnnonceRepository $annonceRepo): JsonResponse {
         try {
             $demande = $serializer->deserialize($request->getContent(), Demande::class, 'json');
         } catch (\Exception $e) {
             return $this->json('Invalid Body', 400);
         }
 
+        // $utilisateurId = $demande->getUtilisature()->getId();
+        // $annonceId = $demande->getAnnonce()->getId();
+        $utilisateur = $utilisateurRepo->find(1);
+        $annonce = $annonceRepo->find(19);
+        $demande->setUtilisature($utilisateur);
+        $demande->setAnnonce($annonce);
+        //  $demande->setUtilisature($utilisateurRepo->find(1));
+        //  $demande->setAnnonce($annonceRepo->find(1));
+        //  $annonce = $demande->getAnnonce();
+        //  $this->em->persist($annonce);
         $this->em->persist($demande);
         $this->em->flush();
         return $this->json($demande, 201);
 
     }
+
+
+    // #[Route(methods: 'POST')]
+    // public function addDemAnn(Request $request, SerializerInterface $serializer, UtilisateurRepository $utilisateurRepo): JsonResponse {
+    //     try {
+    //         $demande = $serializer->deserialize($request->getContent(), Demande::class, 'json');
+    //     } catch (\Exception $e) {
+    //         return $this->json('Invalid Body', 400);
+    //     }
+
+    //     $annonce = $demande->getAnnonce();
+    //     $demande->setUtilisature($utilisateurRepo->find(1));
+    //     $this->em->persist($annonce);
+    //     $this->em->persist($demande);
+    //     $this->em->flush();
+    //     return $this->json($demande, 201);
+
+    // }
 
     #[Route('/{id}', methods: 'DELETE')]
     public function delete(Demande $demande): JsonResponse {
