@@ -21,5 +21,5 @@ Bien que séparés en deux acteurs, une personne peut être à la fois emprunteu
 
 Il n'est pas obligatoire de faire un système d'authentification si vous ne vous sentez pas de vous lancer dedans. Pour simuler des users connectés, vous pouvez créer des routes qui attendront en paramètre l'id du User qui fait l'action (par exemple une route /api/borrow/{item}/user/{user} ou un /api/item/{user} en POST respectivement pour la création d'un emprunt ou d'un item)
 
-# Rendu
+## Rendu
 Le rendu devra contenir un lien vers le projet github du front et un lien vers le projet github du back et devra s'accompagner d'une petite présentation orale d'une dizaine de minutes le vendredi après midi pour décrire le code réalisé et éventuellement expliquer certains choix et méthodes.
